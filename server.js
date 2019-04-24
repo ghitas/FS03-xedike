@@ -8,7 +8,11 @@ require('dotenv').config();
 
 /* Connect DB */
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  // .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .connect(
+    'mongodb+srv://admin:admin123@cluster0-km5ob.mongodb.net/test?retryWrites=true',
+    { useNewUrlParser: true }
+  )
   .then(console.log('Connected to DB'))
   .catch(console.log);
 
@@ -27,7 +31,7 @@ require('./config/passport')(passport);
 // router
 app.use('/api/users', require('./routes/api/users'));
 
-const port = process.env.PORT || 5000;
+const port = 5000;
 app.listen(port, () => {
   console.log('Connected to server on ' + port);
 });
